@@ -1,11 +1,19 @@
 Bacteria[] kerchow; 
+Bacteria[] kachow;
+int width = 500;
 void setup()   
 {     
   size(500, 500);
-  kerchow = new Bacteria[300];
-  for (int i = 0; i < kerchow.length; i++) {
-    kerchow[i] = new Bacteria(i*2, i*2);
+  kerchow = new Bacteria[(width * width)];
+  for (int y = 0; y < kerchow.length; y++) {
+    for (int x = 0; x < kerchow.length; x++) 
+    coords = x, y
   }
+}
+/*kachow = new Bacteria[width];
+ for (int i = 0; i < kachow.length; i++) {
+ kachow[i] = new Bacteria(500-i, 500-i);
+ } */
 }   
 void draw()   
 {    
@@ -14,6 +22,10 @@ void draw()
     kerchow[i].show();
     kerchow[i].walk();
   }
+  /*for (int i = 0; i < kachow.length; i ++) {
+   kachow[i].show();
+   kachow[i].walk();
+   } */
 }
 class Bacteria    
 {     
@@ -26,15 +38,20 @@ class Bacteria
     myColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
   }    
   void walk() {
-    if (((int)myX > 150) && ((int)myY>150)) {
-      myX += (int)(Math.random()*9-3);
-      myY += (int)(Math.random()*9-6);
-      myRadius += (int)(Math.random()*10-5);
-    } else {
-      myX += (int)(Math.random()*9-6);
-      myY += (int)(Math.random()*9-6);
-      myRadius += (int)(Math.random()*10-5);
+    if (((int)myX > width/2) && ((int)myY < width/2)) { //Top right
+      myX += (int)(Math.random()*3-2);
+      myY += (int)(Math.random()*3-1);
+    } else if (((int)myX > width/2) && ((int)myY > width/2)) { //Bottom right
+      myX += (int)(Math.random()*3-2);
+      myY += (int)(Math.random()*3-2);
+    } else if (((int)myX < width/2) && ((int)myY < width/2)) { //Top left
+      myX += (int)(Math.random()*3-1);
+      myY += (int)(Math.random()*3-1);
+    } else { //Bottom Left
+      myX += (int)(Math.random()*3-1);
+      myY += (int)(Math.random()*3-2);
     }
+    myRadius += (int)(Math.random()*4-2);
   }
   void show() {
     noStroke();
