@@ -1,31 +1,58 @@
-Bacteria[] kerchow; 
+Bacteria[] kechow; 
 Bacteria[] kachow;
+Bacteria[] kochow;
+Bacteria[] kichow;
 int width = 500;
 void setup()   
 {     
   size(500, 500);
-  kerchow = new Bacteria[(width * width)];
-  for (int y = 0; y < kerchow.length; y++) {
-    for (int x = 0; x < kerchow.length; x++) 
-    coords = x, y
+  /*kerchow = new Bacteria[(width * width)];
+   int[] coords = new int[width * width];
+   for (int y = 0; y < kerchow.length; y++) {
+   for (int x = 0; x < kerchow.length; x++) {
+   for (int i = 0; i < kerchow.length; i++) {
+   kerchow[i] = new Bacteria(x, y);
+   }
+   }
+   } */
+  kechow = new Bacteria[width];
+  for (int i = 0; i < kechow.length; i++) {
+    kechow[i] = new Bacteria(480, i);
+  }
+  kachow = new Bacteria[width];
+  for (int i = 0; i < kachow.length; i++) {
+    kachow[i] = new Bacteria(20, i);
+  }
+  kochow = new Bacteria[width];
+  for (int i = 0; i < kochow.length; i++) {
+    kochow[i] = new Bacteria(i, 20);
+  }
+  kichow = new Bacteria[width];
+  for (int i = 0; i < kichow.length; i++) {
+    kichow[i] = new Bacteria(i, 480);
   }
 }
-/*kachow = new Bacteria[width];
- for (int i = 0; i < kachow.length; i++) {
- kachow[i] = new Bacteria(500-i, 500-i);
- } */
-}   
 void draw()   
 {    
   background(128);
-  for (int i = 0; i < kerchow.length; i ++) {
-    kerchow[i].show();
-    kerchow[i].walk();
+  rect(230, 0, 40, 500);
+  rect(0, 230, 500, 40);
+  for (int i = 0; i < kechow.length; i ++) {
+    kechow[i].show();
+    kechow[i].walk();
   }
-  /*for (int i = 0; i < kachow.length; i ++) {
-   kachow[i].show();
-   kachow[i].walk();
-   } */
+  for (int i = 0; i < kachow.length; i ++) {
+    kachow[i].show();
+    kachow[i].walk();
+  }
+  for (int i = 0; i < kochow.length; i ++) {
+    kochow[i].show();
+    kochow[i].walk();
+  }
+  for (int i = 0; i < kochow.length; i ++) {
+    kichow[i].show();
+    kichow[i].walk();
+  }
 }
 class Bacteria    
 {     
@@ -47,7 +74,7 @@ class Bacteria
     } else if (((int)myX < width/2) && ((int)myY < width/2)) { //Top left
       myX += (int)(Math.random()*3-1);
       myY += (int)(Math.random()*3-1);
-    } else { //Bottom Left
+    } else if(((int)myX < width/2) && ((int)myY > width/2)){ //Bottom Left
       myX += (int)(Math.random()*3-1);
       myY += (int)(Math.random()*3-2);
     }
